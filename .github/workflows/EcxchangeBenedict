@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange Benedict | Instant Gift Card & Crypto Exchange</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            900: '#134e4a',
+                            gold: '#f59e0b',
+                            accent: '#06b6d4',
+                        },
+                        darkbg: '#0a0f1d',
+                        darkcard: 'rgba(17, 24, 39, 0.75)',
+                        darkborder: 'rgba(255, 255, 255, 0.08)'
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 3s infinite alternate',
+                        'float': 'float 4s ease-in-out infinite',
+                        'ticker': 'ticker 35s linear infinite'
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 15px rgba(20, 184, 166, 0.2)' },
+                            '100%': { boxShadow: '0 0 30px rgba(6, 182, 212, 0.5)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        ticker: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #060a12;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0f1d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #14b8a6;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(20, 184, 166, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px -10px rgba(20, 184, 166, 0.15);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2dd4bf 0%, #06b6d4 50%, #3b82f6 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
+        }
+        .btn-glow {
+            position: relative;
+        }
+        .btn-glow::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #14b8a6, #06b6d4, #3b82f6);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            filter: blur(8px);
+        }
+        .btn-glow:hover::after {
+            opacity: 0.7;
+        }
+        /* Hide scrollbars for ticker */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-gradient-to-r from-teal-900/80 via-cyan-900/80 to-blue-900/80 border-b border-teal-500/20 text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span class="text-teal-200">Instant Trade Rate Surge:</span> 
+        <span class="text-white font-semibold">High rate payout active for Amazon, Steam & Apple Gift Cards!</span>
+        <button onclick="scrollToCalc()" class="underline text-teal-300 hover:text-white ml-2 transition">Trade Now &rarr;</button>
+    </div>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="w-11 h-11 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-teal-500/20 border border-teal-300/30">
+                        <i class="fa-solid me-0.5 fa-bolt text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-white flex items-center gap-1">
+                            Exchange <span class="gradient-text">Benedict</span>
+                        </span>
+                        <span class="block text-[10px] text-teal-400 font-semibold tracking-widest uppercase -mt-1">Verified Escrow & Rate Desk</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                    <a href="#calculator" class="hover:text-brand-400 transition-colors">Live Rates</a>
+                    <a href="#assets" class="hover:text-brand-400 transition-colors">Gift Cards</a>
+                    <a href="#assets" class="hover:text-brand-400 transition-colors">Crypto Desk</a>
+                    <a href="#how-it-works" class="hover:text-brand-400 transition-colors">How It Works</a>
+                    <a href="#reviews" class="hover:text-brand-400 transition-colors">Reviews</a>
+                    <a href="#faq" class="hover:text-brand-400 transition-colors">FAQ</a>
+                </nav>
+
+                <!-- Action CTA -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <button onclick="toggleChat()" class="px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-800/60 text-slate-200 text-sm font-semibold hover:border-teal-500/50 hover:text-white transition flex items-center gap-2">
+                        <i class="fa-solid fa-headset text-teal-400"></i> Direct Support
+                    </button>
+                    <button onclick="scrollToCalc()" class="btn-glow px-5 py-2.5 rounded-xl gradient-bg text-white text-sm font-bold shadow-lg shadow-teal-500/25 hover:brightness-110 transition flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Start Trade
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="mobile-menu-btn" class="p-2.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-slate-900/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3">
+            <a href="#calculator" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">Live Rates Calculator</a>
+            <a href="#assets" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">Supported Gift Cards & Crypto</a>
+            <a href="#how-it-works" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">How It Works</a>
+            <a href="#reviews" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">Customer Testimonials</a>
+            <a href="#faq" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">FAQ</a>
+            <div class="pt-4 flex flex-col gap-2">
+                <button onclick="scrollToCalc()" class="w-full py-3 rounded-xl gradient-bg text-white font-bold text-center">Start Trade Now</button>
+                <button onclick="toggleChat()" class="w-full py-3 rounded-xl bg-slate-800 text-slate-200 font-bold text-center border border-slate-700">Live Web Support</button>
+            </div>
+        </div>
+
+        <!-- DYNAMIC LIVE CRYPTO TICKER -->
+        <div class="bg-slate-950/80 border-t border-b border-slate-800/60 py-2.5 overflow-hidden">
+            <div class="flex items-center gap-8 animate-ticker whitespace-nowrap text-xs font-mono" id="crypto-ticker-container">
+                <!-- Javascript will inject real live pricing with pulse effect -->
+                <div class="flex items-center gap-2 text-slate-400">Loading live exchange ticker markets...</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+        <!-- Background Orbs -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-teal-500/10 blur-[130px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-300 text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-shield-halved text-teal-400"></i> #1 Trusted Trader & Verified Rates Desk
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
+                        Trade Gift Cards & Crypto at <span class="gradient-text">Unbeatable Rates</span> with Instant Payouts.
+                    </h1>
+
+                    <p class="text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Convert your iTunes, Amazon, Steam, Sephora, Chime, Ebay, Xbox, Vanilla, Target, Footlocker, Green Snake, GameStop, Macy, Nike, Playstore, Roblox, Kohl, Visa gift cards or BTC, USDT, SOL to instant Cash (NGN, USD, Bank Transfer) in less than 5 minutes. Guaranteed safe & fast.
+                    </p>
+
+                    <!-- Trust Stats Badges -->
+                    <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-slate-300 text-sm font-medium">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-teal-400 text-base"></i>
+                            <span><b>$2.5M+</b> Traded</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-amber-400 text-base"></i>
+                            <span><b>&lt; 5 Mins</b> Payout Time</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-star text-yellow-400 text-base"></i>
+                            <span><b>4.9/5</b> Rating (1,400+ Reviews)</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <button onclick="scrollToCalc()" class="w-full sm:w-auto btn-glow px-8 py-4 rounded-xl gradient-bg text-white font-bold text-base shadow-xl shadow-teal-500/20 hover:scale-[1.02] active:scale-95 transition flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-calculator text-lg"></i> Calculate Rate & Sell
+                        </button>
+                        <a href="https://wa.me/?text=Hello%20Exchange%20Benedict,%20I%20want%20to%20trade%20my%20Gift%20Card%20/%20Crypto" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 font-bold text-base transition flex items-center justify-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i> Chat VIP Rate on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Hero Mini Quick Rate Widget -->
+                <div class="lg:col-span-5">
+                    <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-700/60 shadow-2xl relative overflow-hidden">
+                        <div class="absolute -top-12 -right-12 w-32 h-32 bg-teal-500/20 rounded-full blur-2xl"></div>
+                        <div class="flex items-center justify-between mb-6 border-b border-slate-800 pb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-fire text-amber-400"></i> Top Rate Highlights Today
+                                </h3>
+                                <p class="text-xs text-slate-400">Updated every 60 seconds</p>
+                            </div>
+                            <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full border border-emerald-500/20">LIVE</span>
+                        </div>
+
+                        <!-- Highlights List -->
+                        <div class="space-y-3.5">
+                            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-amber-400 text-lg">
+                                        <i class="fa-brands fa-amazon"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-white">Amazon Card (US)</p>
+                                        <p class="text-[11px] text-slate-400">Physical / Receipt</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-teal-400">₦1,180 / $</p>
+                                    <p class="text-[10px] text-emerald-400">+3.5% Surge</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-sky-400 text-lg">
+                                        <i class="fa-brands fa-apple"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-white">Apple / iTunes (US)</p>
+                                        <p class="text-[11px] text-slate-400">Physical & eCode</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-teal-400">₦1,120 / $</p>
+                                    <p class="text-[10px] text-emerald-400">Highest Rate</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-emerald-400 text-lg">
+                                        <i class="fa-solid fa-dollar-sign"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-white">USDT (Tether)</p>
+                                        <p class="text-[11px] text-slate-400">TRC20 / BEP20</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-teal-400">₦1,495 / $</p>
+                                    <p class="text-[10px] text-slate-400">Instant Deposit</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-amber-500 text-lg">
+                                        <i class="fa-brands fa-bitcoin"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-white">Bitcoin (BTC)</p>
+                                        <p class="text-[11px] text-slate-400">Direct Transfer</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-teal-400">₦1,490 / $</p>
+                                    <p class="text-[10px] text-slate-400">Fast 1 Confirmation</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="scrollToCalc()" class="w-full mt-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs tracking-wider uppercase border border-slate-700 transition flex items-center justify-center gap-2">
+                            Check All 30+ Cards & Assets <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE RECENT TRADE TICKER BAR -->
+    <div class="bg-slate-900/90 border-y border-slate-800 py-3 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 flex items-center gap-4 text-xs">
+            <span class="flex items-center gap-2 px-3 py-1 rounded-md bg-teal-500/10 text-teal-400 font-bold tracking-wider uppercase shrink-0 border border-teal-500/20">
+                <i class="fa-solid fa-bolt animate-pulse"></i> 
+                Live Trades
+            </span>
+            <div class="overflow-hidden relative w-full">
+                <div id="live-trade-feed" class="flex gap-8 whitespace-nowrap animate-ticker font-mono">
+                    <!-- Javascript Dynamic Trades Injected -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CALCULATOR & TRADE ESTIMATOR SECTION -->
+    <section id="calculator" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    Interactive <span class="gradient-text">Rate Calculator</span>
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">Select what you wish to trade and see your exact payout calculated instantly.</p>
+            </div>
+
+            <!-- CALCULATOR CARD CONTAINER -->
+            <div class="glass-panel p-6 sm:p-10 rounded-3xl border border-slate-700/80 shadow-2xl relative">
+                
+                <!-- Category Toggle Switch -->
+                <div class="grid grid-cols-2 gap-2 p-1.5 rounded-2xl bg-slate-900 border border-slate-800 mb-8">
+                    <button id="tab-giftcard" onclick="switchCalcType('giftcard')" class="py-3 px-4 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-cyan-600 text-white shadow-lg">
+                        <i class="fa-solid fa-gift"></i> Sell Gift Card
+                    </button>
+                    <button id="tab-crypto" onclick="switchCalcType('crypto')" class="py-3 px-4 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 text-slate-400 hover:text-white">
+                        <i class="fa-brands fa-bitcoin"></i> Sell Crypto
+                    </button>
+                </div>
+
+                <!-- Form Inputs Grid -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <!-- Asset Type Selector -->
+                    <div>
+                        <label id="asset-label" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+                            Select Gift Card Type
+                        </label>
+                        <select id="calc-asset" onchange="updateCalc()" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3.5 text-white font-semibold focus:outline-none focus:border-teal-400 transition">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+
+                    <!-- Category / Network Subtype -->
+                    <div>
+                        <label id="subtype-label" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+                            Card Sub-category / Region
+                        </label>
+                        <select id="calc-subtype" onchange="updateCalc()" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3.5 text-white font-semibold focus:outline-none focus:border-teal-400 transition">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+
+                    <!-- Input Amount -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+                            Amount You Have
+                        </label>
+                        <div class="relative">
+                            <input type="number" id="calc-amount" value="100" min="5" oninput="updateCalc()" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3.5 text-white text-lg font-bold focus:outline-none focus:border-teal-400 transition" placeholder="e.g. 100">
+                            <span id="calc-currency-symbol" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">USD</span>
+                        </div>
+                    </div>
+
+                    <!-- Currency Payout Target -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+                            Payout Target Currency
+                        </label>
+                        <select id="calc-payout-curr" onchange="updateCalc()" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3.5 text-white font-semibold focus:outline-none focus:border-teal-400 transition">
+                            <option value="NGN">Nigerian Naira (₦ - Instant Bank Transfer)</option>
+                            <option value="USD">US Dollars ($ - Bank Wire / Zelle)</option>
+                            <option value="USDT">USDT (Tether - Crypto Wallet)</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Live Rate Summary Box -->
+                <div class="mt-8 p-6 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div>
+                        <span class="text-xs text-slate-400 uppercase font-semibold tracking-wider block">Estimated Payout Rate</span>
+                        <div class="flex items-baseline gap-2 mt-1">
+                            <span id="calc-rate-display" class="text-xl font-mono font-bold text-amber-400">₦1,180 / $</span>
+                            <span class="text-xs text-emerald-400 font-medium"><i class="fa-solid fa-arrow-trend-up"></i> Best Rate Guaranteed</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center sm:text-right">
+                        <span class="text-xs text-slate-400 uppercase font-semibold tracking-wider block">Total Amount You Receive</span>
+                        <span id="calc-total-payout" class="text-3xl font-extrabold text-teal-400 tracking-tight">₦118,000</span>
+                    </div>
+                </div>
+
+                <!-- Submit Trade Trigger Button -->
+                <button onclick="openTradeModal()" class="w-full mt-8 btn-glow py-4 rounded-xl gradient-bg text-white font-extrabold text-lg shadow-xl shadow-teal-500/25 hover:brightness-110 active:scale-[0.99] transition flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-rocket"></i> Proceed to Start This Trade Now
+                </button>
+
+                <p class="text-center text-xs text-slate-400 mt-4 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock text-emerald-400"></i> Encrypted Direct Desk Processing • Zero Hidden Deduction
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SUPPORTED CARDS & CRYPTO GRID -->
+    <section id="assets" class="py-20 bg-slate-950/60 border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-white">Supported Cards & Assets</h2>
+                    <p class="text-slate-400 text-sm mt-1">We accept over 40+ types of gift cards and top crypto coins at maximum market rate.</p>
+                </div>
+                <!-- Filter Tabs -->
+                <div class="flex items-center gap-2 mt-4 md:mt-0 overflow-x-auto pb-2 no-scrollbar">
+                    <button onclick="filterGrid('all')" class="asset-tab-btn active border border-teal-500 bg-teal-500/20 text-teal-300 text-xs font-bold px-4 py-2 rounded-xl">All Assets</button>
+                    <button onclick="filterGrid('giftcard')" class="asset-tab-btn border border-slate-800 bg-slate-900 text-slate-400 hover:text-white text-xs font-bold px-4 py-2 rounded-xl">Gift Cards</button>
+                    <button onclick="filterGrid('crypto')" class="asset-tab-btn border border-slate-800 bg-slate-900 text-slate-400 hover:text-white text-xs font-bold px-4 py-2 rounded-xl">Cryptocurrencies</button>
+                </div>
+            </div>
+
+            <!-- Assets Grid -->
+            <div id="assets-grid-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-teal-400 text-xs font-bold uppercase tracking-widest">Seamless 3-Step Process</span>
+                <h2 class="text-3xl font-extrabold text-white mt-2">How Trading Works on Exchange Benedict</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/30 text-teal-400 flex items-center justify-center font-extrabold text-xl mb-6">
+                        01
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Select & Calculate</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Choose your gift card category or crypto, input your amount, and preview your instant rate payout in real time.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center font-extrabold text-xl mb-6">
+                        02
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Upload & Submit Details</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Send card codes/images or transfer crypto to Benedict's secure desk wallet address along with your bank account details.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-extrabold text-xl mb-6">
+                        03
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Get Paid Instantly</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Card codes and crypto confirmations are verified in 2–5 minutes. Your payment is credited directly into your bank account.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS & TESTIMONIALS -->
+    <section id="reviews" class="py-20 bg-slate-950/80 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest"><i class="fa-solid fa-star"></i> Verified Feedback</span>
+                <h2 class="text-3xl font-extrabold text-white mt-2">What Our Clients Say About Benedict</h2>
+                <p class="text-slate-400 text-sm mt-1">Over 15,000+ satisfied trades completed with 100% honesty and lightning-fast speed.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6" id="reviews-container">
+                <!-- Javascript Injected Testimonials -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl font-extrabold text-white">Frequently Asked Questions</h2>
+                <p class="text-slate-400 text-sm mt-2">Everything you need to know about trading safely with Benedict.</p>
+            </div>
+
+            <div class="space-y-4" id="faq-accordion">
+                
+                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/40 transition">
+                        <span>How fast is the payment payout?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 text-slate-400 text-sm border-t border-slate-800/60 leading-relaxed">
+                        Payouts are executed immediately after card or crypto confirmation. On average, you will receive funds in your bank account or wallet within 2 to 7 minutes.
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/40 transition">
+                        <span>What types of gift cards can I sell?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 text-slate-400 text-sm border-t border-slate-800/60 leading-relaxed">
+                        We buy physical cards and eCodes for Amazon, Apple/iTunes, Steam, Sephora, Nordstrom, Google Play, Razer Gold, eBay, Nike, American Express, Visa prepaid, and many more in USD, EUR, GBP, AUD, CAD, and CHF.
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/40 transition">
+                        <span>Is Benedict's exchange safe and legitimate?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 text-slate-400 text-sm border-t border-slate-800/60 leading-relaxed">
+                        Yes! Exchange Benedict operates as a verified direct desk trader. All trades are logged, transparent, and confirmed before instant settlement. We have thousands of verified active repeat clients.
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/40 transition">
+                        <span>How do I submit physical card pictures or receipt images?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 text-slate-400 text-sm border-t border-slate-800/60 leading-relaxed">
+                        You can use our direct interactive trade modal on the website, or click to chat directly with Benedict on WhatsApp where you can attach your card pictures and receipts directly!
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DIRECT INQUIRY & CONTACT FORM SECTION -->
+    <section id="contact" class="py-20 bg-slate-950/60 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-slate-800 shadow-2xl">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Direct Trade Message / Special Inquiry</h2>
+                    <p class="text-slate-400 text-sm mt-1">Have bulk gift cards or special crypto volume? Send Benedict a direct message below.</p>
+                </div>
+
+                <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-5">
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Your Name / Alias</label>
+                            <input type="text" required placeholder="e.g. Alex Trader" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Email Address / Phone</label>
+                            <input type="text" required placeholder="e.g. client@gmail.com / +234..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Trade Details / Message</label>
+                        <textarea rows="4" required placeholder="Describe what card/crypto you wish to trade or any question..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400"></textarea>
+                    </div>
+
+                    <!-- File Dropzone simulation -->
+                    <div class="border-2 border-dashed border-slate-700 hover:border-teal-500 rounded-xl p-6 text-center cursor-pointer transition bg-slate-900/40" onclick="document.getElementById('file-upload-input').click()">
+                        <input type="file" id="file-upload-input" class="hidden" onchange="handleFileSelect(this)">
+                        <i class="fa-solid fa-cloud-arrow-up text-2xl text-teal-400 mb-2"></i>
+                        <p id="file-upload-text" class="text-xs text-slate-300 font-medium">Click to upload Gift Card Image or Receipt (Optional)</p>
+                        <p class="text-[10px] text-slate-500 mt-1">PNG, JPG, WEBP up to 10MB</p>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl gradient-bg text-white font-bold hover:brightness-110 transition shadow-lg shadow-teal-500/20">
+                        Send Message to Benedict Desk
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 text-sm py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg gradient-bg flex items-center justify-center text-white">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <span class="text-xl font-extrabold text-white">Exchange Benedict</span>
+                    </div>
+                    <p class="text-slate-400 text-xs max-w-sm leading-relaxed">
+                        Exchange Benedict is the premier OTC rate desk providing instant liquidation for all major international gift cards, Bitcoin, Ethereum, and Tether with immediate local bank wire payouts.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#calculator" class="hover:text-teal-400 transition">Rate Calculator</a></li>
+                        <li><a href="#assets" class="hover:text-teal-400 transition">Supported Cards</a></li>
+                        <li><a href="#assets" class="hover:text-teal-400 transition">Crypto Exchange</a></li>
+                        <li><a href="#reviews" class="hover:text-teal-400 transition">Client Reviews</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Support & Socials</h4>
+                    <div class="space-y-3 text-xs">
+                        <p class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-400"></i> WhatsApp: Direct VIP Desk</p>
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-clock text-amber-400"></i> Working Hours: 24/7 Active Desk</p>
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-shield text-teal-400"></i> SSL 256-Bit Secured Protocol</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-900 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                <p>&copy; 2026 Exchange Benedict. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <span class="text-slate-500">Fast • Reliable • Honest Rates</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE FLOATING LIVE CHAT WIDGET BUTTON -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+        <!-- Chat Popup Window -->
+        <div id="chat-window" class="hidden w-[340px] sm:w-[380px] h-[460px] glass-panel rounded-2xl border border-teal-500/30 shadow-2xl flex flex-col overflow-hidden animate-float">
+            <!-- Header -->
+            <div class="gradient-bg p-4 flex items-center justify-between text-white">
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-full bg-slate-900 border border-teal-300/40 flex items-center justify-center font-bold text-amber-400">
+                            EB
+                        </div>
+                        <span class="w-3 h-3 bg-emerald-400 border-2 border-slate-900 rounded-full absolute bottom-0 right-0"></span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">Exchange Benedict Desk</h4>
+                        <p class="text-[11px] text-teal-100 flex items-center gap-1">Online • Instant Response</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white/80 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Messages Area -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs bg-slate-950/80">
+                <div class="flex gap-2">
+                    <div class="w-7 h-7 rounded-full bg-teal-500/20 text-teal-300 flex items-center justify-center shrink-0 font-bold text-[10px]">EB</div>
+                    <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none max-w-[80%] border border-slate-700/60">
+                        Hello! Welcome to Exchange Benedict desk 👋 What gift card or crypto are you looking to trade right now?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Box -->
+            <div class="p-3 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
+                <input type="text" id="chat-input" onkeypress="if(event.key === 'Enter') sendChatMessage()" placeholder="Type trade message..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-400">
+                <button onclick="sendChatMessage()" class="p-2.5 rounded-xl gradient-bg text-white hover:brightness-110">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button onclick="toggleChat()" class="btn-glow p-4 rounded-full gradient-bg text-white shadow-2xl hover:scale-110 transition flex items-center justify-center gap-2 font-bold">
+            <i class="fa-solid fa-comments text-xl"></i>
+            <span class="hidden sm:inline text-xs pr-1">Chat Benedict</span>
+        </button>
+    </div>
+
+    <!-- TRADE DIRECT SUBMISSION MODAL -->
+    <div id="trade-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-lg p-6 sm:p-8 rounded-3xl border border-teal-500/40 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeTradeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4">
+                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-extrabold text-white">Complete Trade Submission</h3>
+                    <p class="text-xs text-slate-400">Order Ref: <span id="modal-order-ref" class="font-mono text-teal-400">#EB-8921</span></p>
+                </div>
+            </div>
+
+            <!-- Selected Summary Box -->
+            <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 mb-6 space-y-2 text-xs">
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Item to Trade:</span>
+                    <span id="modal-summary-item" class="font-bold text-white">Amazon Card ($100)</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Rate applied:</span>
+                    <span id="modal-summary-rate" class="font-bold text-amber-400">₦1,180 / $</span>
+                </div>
+                <div class="flex justify-between border-t border-slate-800 pt-2 text-sm">
+                    <span class="text-slate-300 font-bold">You will receive:</span>
+                    <span id="modal-summary-payout" class="font-extrabold text-teal-400">₦118,000</span>
+                </div>
+            </div>
+
+            <!-- Submission Form -->
+            <form onsubmit="handleTradeSubmit(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-300 uppercase mb-1">Your Full Name</label>
+                    <input type="text" required placeholder="Enter name" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-teal-400">
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-300 uppercase mb-1">Card Code / Crypto Wallet Details</label>
+                    <textarea rows="2" required placeholder="Paste card codes (e.g. AQ89-XXXX-XXXX) or Crypto Tx Hash" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-teal-400 font-mono"></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-300 uppercase mb-1">Bank Name / Wallet</label>
+                        <input type="text" required placeholder="e.g. GTBank / Access" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-teal-400">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-300 uppercase mb-1">Account Number</label>
+                        <input type="text" required placeholder="0123456789" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-teal-400 font-mono">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-300 uppercase mb-1">Account Holder Name</label>
+                    <input type="text" required placeholder="Matches bank name" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-teal-400">
+                </div>
+
+                <button type="submit" class="w-full py-3.5 mt-2 rounded-xl gradient-bg text-white font-extrabold text-sm shadow-lg shadow-teal-500/25 hover:brightness-110">
+                    Confirm & Submit Order to Desk
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SUCCESS NOTIFICATION TOAST -->
+    <div id="toast" class="fixed top-24 right-5 z-50 hidden glass-panel border border-emerald-500/50 p-4 rounded-2xl shadow-2xl text-xs flex items-center gap-3 text-white max-w-xs transition-all duration-300">
+        <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 text-base">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div>
+            <p id="toast-title" class="font-bold">Trade Submitted Successfully!</p>
+            <p id="toast-msg" class="text-slate-300 text-[11px]">Benedict is processing your payout.</p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        // --- DATA DESK RATES & ASSET CONFIGURATION ---
+        const giftCardData = {
+            amazon: {
+                name: "Amazon Gift Card",
+                icon: "fa-brands fa-amazon text-amber-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical (Cash/Debit Receipt)", rate: 1180, currency: "USD" },
+                    "us_ecode": { label: "USA e-Code / Claim Code", rate: 1080, currency: "USD" },
+                    "uk_phy": { label: "UK Physical / eCode (£)", rate: 1350, currency: "GBP" },
+                    "eur_phy": { label: "Euro Region Card (€)", rate: 1150, currency: "EUR" }
+                }
+            },
+            apple: {
+                name: "Apple / iTunes Card",
+                icon: "fa-brands fa-apple text-sky-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Card ($)", rate: 1120, currency: "USD" },
+                    "us_ecode": { label: "USA e-Code ($)", rate: 1050, currency: "USD" },
+                    "cad_phy": { label: "Canada Card (CAD)", rate: 820, currency: "CAD" },
+                    "gbp_phy": { label: "UK iTunes (£)", rate: 1300, currency: "GBP" }
+                }
+            },
+            steam: {
+                name: "Steam Wallet Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            sephora: {
+                name: "Sephora Card",
+                icon: "fa-solid fa-bag-shopping text-pink-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical ($50+)", rate: 1200, currency: "USD" },
+                    "us_ecode": { label: "USA eCode ($)", rate: 1100, currency: "USD" }
+                }
+            },
+            googleplay: {
+                name: "Google Play Store",
+                icon: "fa-brands fa-google-play text-emerald-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Card", rate: 1020, currency: "USD" },
+                    "us_ecode": { label: "USA eCode", rate: 950, currency: "USD" }
+                }
+            },
+            nordstrom: {
+                name: "Nordstrom Card",
+                icon: "fa-solid fa-shirt text-cyan-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Card", rate: 1220, currency: "USD" }
+                }
+            },
+            vanilla: {
+                name: "Vanilla Wallet Card",
+                icon: "fa-solid fa-credit-card text-blue-400",
+                subtypes: {
+                    "vanilla_us": { label: "Vanilla / Target Visa (4036/4852)", rate: 1050, currency: "USD" },
+                    "onevanilla": { label: "OneVanilla Gift Card", rate: 1080, currency: "USD" }
+                }
+            },
+            Footlocker: {
+                name: "Footlocker Gift Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            target: {
+                name: "Target Gift Card",
+                icon: "fa-brands fa-Target text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1180, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1100, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            greenSnake: {
+                name: "Green Snake Gift Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            gameStop: {
+                name: "GameStop Gift Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            macys: {
+                name: "Macys Gift Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            nike: {
+                name: "Nike Gift Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            playStation: {
+                name: "Playstation Gift Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            roblox: {
+                name: "Roblox Gift Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            kohls: {
+                name: "Kohls Gift Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            chime: {
+                name: "Chime Gift Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            ebay: {
+                name: "Ebay Gift Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            xbox: {
+                name: "Xbox Gift Card",
+                icon: "fa-brands fa-steam text-indigo-400",
+                subtypes: {
+                    "us_phy": { label: "USA Physical Steam ($)", rate: 1150, currency: "USD" },
+                    "us_ecode": { label: "USA Steam eCode ($)", rate: 1060, currency: "USD" },
+                    "euro_phy": { label: "Euro Steam (€)", rate: 1180, currency: "EUR" }
+                }
+            },
+            razer: {
+                name: "Razer Gold Gift Card",
+                icon: "fa-solid fa-gamepad text-green-400",
+                subtypes: {
+                    "us_pin": { label: "Global / US PIN Code", rate: 1250, currency: "USD" }
+                }
+            }
+        };
+
+        const cryptoData = {
+            usdt: {
+                name: "Tether (USDT)",
+                icon: "fa-solid fa-dollar-sign text-emerald-400",
+                subtypes: {
+                    "trc20": { label: "TRC20 Network", rate: 1495, currency: "USDT" },
+                    "bep20": { label: "BEP20 / Polygon", rate: 1492, currency: "USDT" }
+                }
+            },
+            btc: {
+                name: "Bitcoin (BTC)",
+                icon: "fa-brands fa-bitcoin text-amber-500",
+                subtypes: {
+                    "direct": { label: "Direct Blockchain Transfer", rate: 1490, currency: "BTC" }
+                }
+            },
+            eth: {
+                name: "Ethereum (ETH)",
+                icon: "fa-brands fa-ethereum text-purple-400",
+                subtypes: {
+                    "erc20": { label: "ERC20 Network", rate: 1485, currency: "ETH" }
+                }
+            },
+            sol: {
+                name: "Solana (SOL)",
+                icon: "fa-solid fa-bolt text-teal-300",
+                subtypes: {
+                    "sol_net": { label: "Solana Native Network", rate: 1480, currency: "SOL" }
+                }
+            }
+        };
+
+        // All assets list for grid render
+        const allGridAssets = [
+            { name: "Amazon Card", rate: "₦1,180/$", type: "giftcard", icon: "fa-brands fa-amazon text-amber-400" },
+            { name: "Apple iTunes", rate: "₦1,120/$", type: "giftcard", icon: "fa-brands fa-apple text-sky-400" },
+            { name: "Steam Wallet", rate: "₦1,150/$", type: "giftcard", icon: "fa-brands fa-steam text-indigo-400" },
+            { name: "Sephora", rate: "₦1,200/$", type: "giftcard", icon: "fa-solid fa-bag-shopping text-pink-400" },
+            { name: "USDT Tether", rate: "₦1,495/$", type: "crypto", icon: "fa-solid fa-dollar-sign text-emerald-400" },
+            { name: "Bitcoin (BTC)", rate: "₦1,490/$", type: "crypto", icon: "fa-brands fa-bitcoin text-amber-500" },
+            { name: "Nordstrom", rate: "₦1,220/$", type: "giftcard", icon: "fa-solid fa-shirt text-cyan-400" },
+            { name: "Razer Gold", rate: "₦1,250/$", type: "giftcard", icon: "fa-solid fa-gamepad text-green-400" },
+            { name: "Chime Card", rate: "₦1,100/$", type: "giftcard", icon: "fa-solid fa-credit-card text-green-400" },
+            { name: "Xbox Card", rate: "₦1,100/$", type: "giftcard", icon: "fa-solid fa-credit-card text-green-400" },
+            { name: "Ebay Card", rate: "₦1,100/$", type: "giftcard", icon: "fa-solid fa-credit-card text-green-400" },
+            { name: "Kohls Card", rate: "₦1,100/$", type: "giftcard", icon: "fa-solid fa-credit-card text-green-400" },
+            { name: "Footlocker Card", rate: "₦1,100/$", type: "giftcard", icon: "fa-solid fa-credit-card text-green-400" },
+            { name: "GreenSnake Card", rate: "₦1,100/$", type: "giftcard", icon: "fa-solid fa-credit-card text-green-400" },
+            { name: "GameStop Card", rate: "₦1,100/$", type: "giftcard", icon: "fa-solid fa-credit-card text-green-400" },
+            { name: "Macys Card", rate: "₦1,100/$", type: "giftcard", icon: "fa-solid fa-credit-card text-green-400" },
+            { name: "Nike Card", rate: "₦1,100/$", type: "giftcard", icon: "fa-solid fa-credit-card text-green-400" },
+            { name: "Playstore Card", rate: "₦1,100/$", type: "giftcard", icon: "fa-solid fa-credit-card text-green-400" },
+            { name: "Roblox Card", rate: "₦1,100/$", type: "giftcard", icon: "fa-solid fa-credit-card text-green-400" },
+            { name: "Google Play", rate: "₦1,020/$", type: "giftcard", icon: "fa-brands fa-google-play text-emerald-400" },
+            { name: "Visa Prepaid", rate: "₦1,080/$", type: "giftcard", icon: "fa-solid fa-credit-card text-blue-400" },
+            { name: "Ethereum (ETH)", rate: "₦1,485/$", type: "crypto", icon: "fa-brands fa-ethereum text-purple-400" },
+            { name: "Solana (SOL)", rate: "₦1,480/$", type: "crypto", icon: "fa-solid fa-bolt text-teal-300" }
+        ];
+
+        // Sample Customer Reviews
+        const reviewsData = [
+            { name: "Chidi O.", text: "Exchange Benedict is super fast! Sold $300 Steam card and received my bank transfer in less than 4 minutes. Highest rate in town.", stars: 5, date: "10 mins ago" },
+            { name: "Michael K.", text: "Honest desk trader. Traded 500 USDT and got paid instantly without stress. Benedict is my go-to guy anytime.", stars: 5, date: "1 hour ago" },
+            { name: "Aisha M.", text: "Best customer response on WhatsApp. Helped me process my Sephora gift card with a very sweet rate.", stars: 5, date: "3 hours ago" }
+        ];
+
+        let currentMode = 'giftcard'; // 'giftcard' or 'crypto'
+
+        // --- INIT ON LOAD ---
+        window.onload = function() {
+            initCryptoTicker();
+            populateAssetDropdown();
+            renderAssetsGrid('all');
+            renderReviews();
+            initLiveTradeFeed();
+
+            // Mobile menu listener
+            document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+                const menu = document.getElementById('mobile-menu');
+                menu.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+        };
+
+        // --- CRYPTO LIVE TICKER ---
+        function initCryptoTicker() {
+            const container = document.getElementById('crypto-ticker-container');
+            const coins = [
+                { symbol: "BTC/USD", price: "$80,480.50", change: "+2.4%", up: true },
+                { symbol: "ETH/USD", price: "$2,341.20", change: "+1.8%", up: true },
+                { symbol: "USDT/NGN", price: "₦1,495.00", change: "+0.5%", up: true },
+                { symbol: "SOL/USD", price: "$101.35", change: "-0.4%", up: false },
+                { symbol: "AMAZON/NGN", price: "₦1,180.00", change: "+3.2%", up: true },
+                { symbol: "APPLE/NGN", price: "₦1,120.00", change: "+1.1%", up: true },
+                { symbol: "USDC/NGN", price: "₦1,380.00", change: "+1.2%", up: true },
+                { symbol: "XPR/NGN", price: "₦1,794.00", change: "+1.4%", up: true },
+                { symbol: "BNB/NGN", price: "₦1,025,340.00", change: "+7.4%", up: true },
+                { symbol: "LTC/USD", price: "$92.10", change: "+0.9%", up: true }
+            ];
+
+            // Repeat to make smooth infinite scroll
+            const tickerItems = [...coins, ...coins, ...coins].map(c => `
+                <div class="inline-flex items-center gap-2 px-3 border-r border-slate-800">
+                    <span class="text-white font-bold">${c.symbol}</span>
+                    <span class="text-slate-300">${c.price}</span>
+                    <span class="${c.up ? 'text-emerald-400' : 'text-rose-400'} flex items-center gap-0.5">
+                        <i class="fa-solid fa-caret-${c.up ? 'up' : 'down'}"></i> ${c.change}
+                    </span>
+                </div>
+            `).join('');
+
+            container.innerHTML = tickerItems;
+        }
+
+        // --- CALCULATOR LOGIC ---
+        function switchCalcType(type) {
+            currentMode = type;
+            const gcBtn = document.getElementById('tab-giftcard');
+            const cryptoBtn = document.getElementById('tab-crypto');
+
+            if (type === 'giftcard') {
+                gcBtn.className = "py-3 px-4 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-cyan-600 text-white shadow-lg";
+                cryptoBtn.className = "py-3 px-4 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 text-slate-400 hover:text-white";
+                document.getElementById('asset-label').innerText = "Select Gift Card Type";
+                document.getElementById('subtype-label').innerText = "Card Sub-category / Region";
+            } else {
+                cryptoBtn.className = "py-3 px-4 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 bg-gradient-to-r from-teal-500 to-cyan-600 text-white shadow-lg";
+                gcBtn.className = "py-3 px-4 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 text-slate-400 hover:text-white";
+                document.getElementById('asset-label').innerText = "Select Cryptocurrency";
+                document.getElementById('subtype-label').innerText = "Network / Transfer Method";
+            }
+
+            populateAssetDropdown();
+        }
+
+        function populateAssetDropdown() {
+            const assetSelect = document.getElementById('calc-asset');
+            assetSelect.innerHTML = '';
+
+            const source = (currentMode === 'giftcard') ? giftCardData : cryptoData;
+
+            Object.keys(source).forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.innerText = source[key].name;
+                assetSelect.appendChild(option);
+            });
+
+            populateSubtypeDropdown();
+        }
+
+        function populateSubtypeDropdown() {
+            const assetKey = document.getElementById('calc-asset').value;
+            const subtypeSelect = document.getElementById('calc-subtype');
+            subtypeSelect.innerHTML = '';
+
+            const source = (currentMode === 'giftcard') ? giftCardData : cryptoData;
+            const asset = source[assetKey];
+
+            if (asset && asset.subtypes) {
+                Object.keys(asset.subtypes).forEach(subKey => {
+                    const sub = asset.subtypes[subKey];
+                    const option = document.createElement('option');
+                    option.value = subKey;
+                    option.innerText = sub.label;
+                    subtypeSelect.appendChild(option);
+                });
+            }
+
+            updateCalc();
+        }
+
+        function updateCalc() {
+            const assetKey = document.getElementById('calc-asset').value;
+            const subKey = document.getElementById('calc-subtype').value;
+            const amount = parseFloat(document.getElementById('calc-amount').value) || 0;
+            const payoutCurr = document.getElementById('calc-payout-curr').value;
+
+            const source = (currentMode === 'giftcard') ? giftCardData : cryptoData;
+            const asset = source[assetKey];
+            
+            if (!asset || !asset.subtypes[subKey]) return;
+
+            const sub = asset.subtypes[subKey];
+            document.getElementById('calc-currency-symbol').innerText = sub.currency;
+
+            let rate = sub.rate;
+            let total = amount * rate;
+
+            let formattedTotal = "";
+            let formattedRate = "";
+
+            if (payoutCurr === 'NGN') {
+                formattedRate = `₦${rate.toLocaleString()} / ${sub.currency}`;
+                formattedTotal = `₦${total.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+            } else if (payoutCurr === 'USD') {
+                let usdRate = (rate / 1490).toFixed(2);
+                let usdTotal = (amount * usdRate).toFixed(2);
+                formattedRate = `$${usdRate} / unit`;
+                formattedTotal = `$${usdTotal}`;
+            } else if (payoutCurr === 'USDT') {
+                let usdtTotal = ((amount * rate) / 1495).toFixed(2);
+                formattedRate = `1 USDT = ₦1,495`;
+                formattedTotal = `${usdtTotal} USDT`;
+            }
+
+            document.getElementById('calc-rate-display').innerText = formattedRate;
+            document.getElementById('calc-total-payout').innerText = formattedTotal;
+        }
+
+        // --- RENDER GRID ASSETS ---
+        function renderAssetsGrid(filter) {
+            const container = document.getElementById('assets-grid-container');
+            container.innerHTML = '';
+
+            const filtered = filter === 'all' ? allGridAssets : allGridAssets.filter(a => a.type === filter);
+
+            filtered.forEach(asset => {
+                const card = document.createElement('div');
+                card.className = "glass-card p-4 rounded-2xl flex flex-col items-center text-center cursor-pointer";
+                card.onclick = () => {
+                    scrollToCalc();
+                    if (asset.type === 'giftcard') switchCalcType('giftcard');
+                    else switchCalcType('crypto');
+                };
+                card.innerHTML = `
+                    <div class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-2xl mb-3">
+                        <i class="${asset.icon}"></i>
+                    </div>
+                    <p class="text-xs font-bold text-white mb-1">${asset.name}</p>
+                    <span class="text-[11px] font-mono text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded-full border border-teal-500/20">${asset.rate}</span>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterGrid(type) {
+            document.querySelectorAll('.asset-tab-btn').forEach(btn => {
+                btn.className = "asset-tab-btn border border-slate-800 bg-slate-900 text-slate-400 hover:text-white text-xs font-bold px-4 py-2 rounded-xl";
+            });
+            event.target.className = "asset-tab-btn active border border-teal-500 bg-teal-500/20 text-teal-300 text-xs font-bold px-4 py-2 rounded-xl";
+            renderAssetsGrid(type);
+        }
+
+        // --- RENDER REVIEWS ---
+        function renderReviews() {
+            const container = document.getElementById('reviews-container');
+            container.innerHTML = reviewsData.map(r => `
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800/80">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-1 text-amber-400 text-xs">
+                            ${'<i class="fa-solid fa-star"></i>'.repeat(r.stars)}
+                        </div>
+                        <span class="text-[11px] text-slate-500">${r.date}</span>
+                    </div>
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">"${r.text}"</p>
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-full bg-teal-500/20 text-teal-300 flex items-center justify-center font-bold text-xs">${r.name.charAt(0)}</div>
+                        <span class="text-xs font-bold text-white">${r.name}</span>
+                        <i class="fa-solid fa-circle-check text-teal-400 text-xs ml-auto" title="Verified Client"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- LIVE TRADE FEED TICKER ---
+        function initLiveTradeFeed() {
+            const feed = document.getElementById('live-trade-feed');
+            const trades = [
+                { user: "User ***391", action: "sold $200 Steam Card", payout: "Paid ₦230,000", time: "2 mins ago" },
+                { user: "User ***812", action: "sold $100 Amazon US", payout: "Paid ₦118,000", time: "4 mins ago" },
+                { user: "User ***004", action: "sold 450 USDT", payout: "Paid ₦672,750", time: "6 mins ago" },
+                { user: "User ***529", action: "sold $50 Apple Card", payout: "Paid ₦56,000", time: "9 mins ago" }
+            ];
+
+            feed.innerHTML = [...trades, ...trades].map(t => `
+                <span class="text-slate-300">
+                    <strong class="text-teal-400">${t.user}</strong> ${t.action} — <span class="text-amber-400 font-bold">${t.payout}</span> <span class="text-slate-500">(${t.time})</span>
+                </span>
+            `).join('<span class="text-slate-700">  •  </span>');
+        }
+
+        // --- FAQ TOGGLE ---
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // --- MODAL & CHAT INTERACTION LOGIC ---
+        function scrollToCalc() {
+            document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openTradeModal() {
+            const assetKey = document.getElementById('calc-asset').value;
+            const amount = document.getElementById('calc-amount').value;
+            const rateStr = document.getElementById('calc-rate-display').innerText;
+            const payoutStr = document.getElementById('calc-total-payout').innerText;
+            
+            const source = (currentMode === 'giftcard') ? giftCardData : cryptoData;
+            const assetName = source[assetKey] ? source[assetKey].name : "Asset";
+
+            document.getElementById('modal-order-ref').innerText = `#EB-${Math.floor(1000 + Math.random() * 9000)}`;
+            document.getElementById('modal-summary-item').innerText = `${assetName} ($${amount})`;
+            document.getElementById('modal-summary-rate').innerText = rateStr;
+            document.getElementById('modal-summary-payout').innerText = payoutStr;
+
+            document.getElementById('trade-modal').classList.remove('hidden');
+        }
+
+        function closeTradeModal() {
+            document.getElementById('trade-modal').classList.add('hidden');
+        }
+
+        function handleTradeSubmit(e) {
+            e.preventDefault();
+            closeTradeModal();
+            showToast("Trade Order Received!", "Benedict is verifying your card/tx. Payment in < 5 mins.");
+        }
+
+        function toggleChat() {
+            const win = document.getElementById('chat-window');
+            win.classList.toggle('hidden');
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const val = input.value.trim();
+            if (!val) return;
+
+            const messages = document.getElementById('chat-messages');
+
+            // User Message Bubble
+            const userBubble = document.createElement('div');
+            userBubble.className = "flex gap-2 justify-end";
+            userBubble.innerHTML = `
+                <div class="bg-teal-600 text-white p-3 rounded-2xl rounded-tr-none max-w-[80%]">
+                    ${val}
+                </div>
+            `;
+            messages.appendChild(userBubble);
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+
+            // Auto reply simulation
+            setTimeout(() => {
+                const replyBubble = document.createElement('div');
+                replyBubble.className = "flex gap-2";
+                replyBubble.innerHTML = `
+                    <div class="w-7 h-7 rounded-full bg-teal-500/20 text-teal-300 flex items-center justify-center shrink-0 font-bold text-[10px]">EB</div>
+                    <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none max-w-[80%] border border-slate-700/60">
+                        Received your message! Please click "Proceed to Start Trade" or message Benedict directly on WhatsApp for VIP immediate payout.
+                    </div>
+                `;
+                messages.appendChild(replyBubble);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+        }
+
+        function handleFileSelect(input) {
+            if (input.files && input.files[0]) {
+                document.getElementById('file-upload-text').innerText = `Attached: ${input.files[0].name}`;
+            }
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast("Message Sent!", "Benedict desk has received your message and will reply shortly.");
+            e.target.reset();
+            document.getElementById('file-upload-text').innerText = "Click to upload Gift Card Image or Receipt (Optional)";
+        }
+
+        function showToast(title, msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-msg').innerText = msg;
+            
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
